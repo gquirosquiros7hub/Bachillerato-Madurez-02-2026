@@ -1,0 +1,801 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bachillerato por Madurez Suficiente 02-2026</title><style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#17202a;--muted:#65707d;--line:#dbe1e7;--accent:#1f5d99;--ok:#1f7a4d;--bad:#b23a3a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}.topbar{max-width:1100px;margin:auto;padding:10px 16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.brand{font-weight:800}.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fafbfc;font-size:14px}.timer{font-variant-numeric:tabular-nums;font-weight:800}
+main{max-width:1100px;margin:22px auto;padding:0 16px 40px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 18px #0000000b;padding:18px}#startView{text-align:center;padding:42px 24px}.hero{font-size:34px;margin:0 0 10px}.sub{color:var(--muted);max-width:760px;margin:0 auto 22px;line-height:1.5}
+button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;background:#e9eef3;color:var(--ink)}button.primary{background:var(--accent);color:#fff}button.danger{background:#7b1f1f;color:#fff}button:disabled{opacity:.45;cursor:not-allowed}.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px}.qhead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.qnum{font-size:20px;font-weight:800}.status{color:var(--muted);font-size:14px}.qtext{font-size:18px;line-height:1.55}.context{margin:12px 0 16px;padding:12px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.context p{margin:.4em 0}.visual-note{color:var(--muted);font-size:14px}table{border-collapse:collapse;width:100%;margin:8px 0;font-size:15px}th,td{border:1px solid #cfd7df;padding:7px;text-align:left}.original-centered th,.original-centered td{text-align:center}th{background:#eef3f7}.choices{display:grid;gap:10px;margin-top:16px}.choice{text-align:left;font-size:16px;padding:13px;background:#f7f9fb;border:2px solid var(--line)}.choice.selected{border-color:var(--accent);background:#eaf2fb}.choice.correct{border-color:var(--ok);background:#eaf7ef}.choice.wrong{border-color:var(--bad);background:#fdecec}.optletter{display:inline-block;width:28px;font-weight:900}.navbuttons{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.side h3{margin-top:0}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.qjump{padding:7px 0;border-radius:7px;font-size:12px}.qjump.current{outline:2px solid var(--accent)}.qjump.answered{background:#dff0e7}.qjump.unanswered{background:#eef1f4}.small{font-size:13px;color:var(--muted);line-height:1.4}.qfigure{margin:18px 0;text-align:center;background:#fff;border:1.5px solid #000;padding:14px;box-sizing:border-box}.qfigure img{display:block;max-width:100%;max-height:560px;width:auto;height:auto;margin:0 auto;background:#fff;object-fit:contain}.original{margin-top:16px}.original summary{cursor:pointer;color:var(--accent);font-weight:700}.original img{display:block;max-width:100%;max-height:70vh;margin:10px auto 0;border:1px solid var(--line);border-radius:8px}.result{display:none}.score{font-size:42px;font-weight:900}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat{padding:14px;border:1px solid var(--line);border-radius:10px;text-align:center}.review-list{display:grid;gap:8px;max-height:430px;overflow:auto;margin-top:14px}.review-row{display:grid;grid-template-columns:72px 1fr 1fr;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}.good{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}.review-solution{grid-column:1/-1;padding:10px 12px;background:#f8fafc;border-left:4px solid var(--accent);border-radius:6px;line-height:1.45}.review-solution b{display:block;margin-bottom:4px}
+@media(max-width:800px){.exam-layout{grid-template-columns:1fr}.side{order:-1}.grid{grid-template-columns:repeat(10,1fr)}.hero{font-size:27px}.review-row{grid-template-columns:55px 1fr 1fr}.qtext{font-size:17px}}
+.item1-original th{text-align:center}.item1-original td:first-child{text-align:left}.item1-original td:nth-child(2){text-align:center}
+.item2-original th,.item2-original td{text-align:center}
+.item4-original th,.item4-original td{text-align:center}
+.item56-original th,.item56-original td{text-align:center}
+.item1112-original th{text-align:center}
+.item1112-original td:first-child{text-align:left}
+.item1112-original td:not(:first-child){text-align:center}
+.item46-original th,.item46-original td{text-align:center}
+
+.exam-subtitle{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:600;
+  color:#0057B8;
+}
+
+
+.exam-intro{
+  margin-top:14px;
+  font-size:14px;
+  line-height:1.55;
+}
+.exam-intro ul{
+  margin:0;
+  padding-left:22px;
+}
+.exam-intro li{
+  margin:5px 0;
+}
+.exam-encouragement{
+  margin-top:10px;
+  font-weight:700;
+  color:#0057B8;
+}
+
+
+.exam-intro ul{
+  list-style-position:outside;
+  padding-left:18px !important;
+  margin-left:0 !important;
+}
+.exam-intro li{
+  padding-left:0 !important;
+  margin-left:0 !important;
+}
+.exam-intro li::marker{
+  font-size:0.9em;
+}
+
+
+.exam-intro{margin-top:14px;font-size:14px;line-height:1.55}
+.exam-intro .intro-line{display:flex;align-items:flex-start;gap:6px;margin:5px 0}
+.exam-intro .intro-bullet{display:inline-block;flex:0 0 auto;font-weight:700;line-height:1.55}
+.exam-encouragement{margin-top:10px;font-weight:700;color:#0057B8}
+
+
+.exam-encouragement{
+  margin-top:12px !important;
+  font-size:17px !important;
+  font-weight:700 !important;
+  color:#7B2CBF !important;
+}
+
+
+.instructions-title{
+  font-weight:700;
+  margin-bottom:7px;
+}
+.exam-intro .intro-line{
+  display:flex;
+  align-items:flex-start;
+  gap:5px;
+  margin:5px 0;
+}
+.exam-intro .intro-bullet{
+  flex:0 0 auto;
+  font-weight:700;
+}
+
+
+.exam-intro,
+.exam-intro .instructions-title,
+.exam-intro .intro-line,
+.exam-intro .intro-line span{
+  text-align:left !important;
+}
+.exam-intro{
+  width:100%;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+
+.choice:disabled{cursor:not-allowed!important;opacity:.72}
+
+.exam-encouragement{
+  text-align:center !important;
+  width:100% !important;
+  display:block !important;
+}
+
+
+.exam-intro .intro-line{display:flex !important;align-items:flex-start !important;gap:5px !important;text-align:left !important;}
+.exam-intro .intro-bullet{display:inline-block !important;flex:0 0 auto !important;font-weight:700 !important;}
+.exam-encouragement{text-align:center !important;width:100% !important;display:block !important;}
+
+.calculator-approved-image{
+  width:100%;
+  margin:14px 0 18px;
+  text-align:center;
+}
+.calculator-approved-image img{
+  display:block;
+  width:100%;
+  max-width:1100px;
+  height:auto;
+  object-fit:contain;
+  margin:0 auto;
+}
+
+
+.calculator-brand-title{
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  margin:14px 0 6px;
+  color:#1f2937;
+}
+
+
+.calculator-approved-image img{
+  display:block !important;
+  width:100% !important;
+  max-width:1200px !important;
+  height:auto !important;
+  object-fit:contain !important;
+  margin:0 auto !important;
+}
+
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+<style>
+.tabla-item2 th:nth-child(n+2):nth-child(-n+5),
+.tabla-item2 td:nth-child(n+2):nth-child(-n+5){
+    text-align:center !important;
+    vertical-align:middle !important;
+}
+</style>
+
+
+<style>
+.tabla-item11 th, .tabla-item11 td{
+    border:1px solid #000;
+    padding:6px 8px;
+}
+.tabla-item11{
+    border-collapse:collapse;
+    margin:8px 0;
+}
+.tabla-item11 th{
+    text-align:center;
+}
+.tabla-item11 td:first-child{
+    text-align:left;
+}
+.tabla-item11 td:nth-child(n+2){
+    text-align:center;
+}
+</style>
+
+
+<style>
+/* Uniformar el texto acentuado de las fórmulas del ítem 11 */
+.formulas-item11 mjx-mtext,
+.formulas-item11 mjx-mtext *{
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+</style>
+
+
+<style>
+/* Fracciones del ítem 11 con la misma tipografía del texto normal */
+.formulas-item11 .html-frac{
+    display:inline-flex;
+    flex-direction:column;
+    vertical-align:middle;
+    text-align:center;
+    font-family:inherit !important;
+    font-size:inherit !important;
+    line-height:1.15;
+    margin:0 .18em;
+}
+.formulas-item11 .html-frac .frac-top,
+.formulas-item11 .html-frac .frac-bottom{
+    font-family:inherit !important;
+    font-size:inherit !important;
+    font-weight:inherit !important;
+    font-style:normal !important;
+    white-space:nowrap;
+}
+.formulas-item11 .html-frac .frac-top{
+    border-bottom:1.3px solid currentColor;
+    padding:0 .22em .10em;
+}
+.formulas-item11 .html-frac .frac-bottom{
+    padding:.10em .22em 0;
+}
+</style>
+
+
+<style id="q26-formula-style">
+.q26-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  width:100%;
+}
+.q26-copy{flex:1;min-width:0;}
+.q26-formula-box{
+  flex:0 0 auto;
+  width:168px;
+  height:66px;
+  border:1.5px solid #111;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  color:#111;
+  white-space:nowrap;
+}
+.q26-left{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  font-style:normal;
+}
+.q26-frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  line-height:1.05;
+  font-family:Arial,Helvetica,sans-serif;
+  font-style:normal;
+}
+.q26-num{
+  display:block;
+  padding:0 5px 4px 5px;
+  border-bottom:1.5px solid #111;
+  text-align:center;
+}
+.q26-den{
+  display:block;
+  padding-top:4px;
+  text-align:center;
+}
+@media (max-width:700px){
+  .q26-top{align-items:flex-start;gap:14px;}
+  .q26-formula-box{width:160px;height:64px;}
+}
+</style>
+
+
+<style id="q26-after-style">
+.q26-formula-after{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:12px;
+  margin-bottom:4px;
+}
+</style>
+
+
+<style id="q26-order-final">
+.q26-formula-after{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:14px;
+  margin-bottom:18px;
+}
+</style>
+
+
+<style id="q26-angle-svg-style">
+.q26-left{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.q26-angle-symbol{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+.q26-angle-symbol svg{display:block;}
+</style>
+
+
+<style id="plain-formula-boxes-after-q26">
+.formula-after-stem{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:14px;
+  margin-bottom:18px;
+}
+.plain-formula-box{
+  min-width:145px;
+  min-height:64px;
+  padding:8px 16px;
+  border:1.5px solid #111;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  font-style:normal;
+  color:#111;
+}
+.plain-frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  line-height:1.05;
+}
+.plain-num{
+  display:block;
+  padding:0 5px 4px;
+  border-bottom:1.5px solid #111;
+  text-align:center;
+}
+.plain-den{
+  display:block;
+  padding-top:4px;
+  text-align:center;
+}
+</style>
+
+<style id="q1-table-pdf-style">
+.q1-pdf-table{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.4px solid #222 !important;
+  border-bottom:1.4px solid #222 !important;
+}
+.q1-pdf-table th,
+.q1-pdf-table td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:6px 18px !important;
+  white-space:nowrap !important;
+}
+.q1-pdf-table th:first-child,
+.q1-pdf-table td:first-child{
+  text-align:left !important;
+}
+.q1-pdf-table th:not(:first-child),
+.q1-pdf-table td:not(:first-child){
+  text-align:center !important;
+}
+.q1-pdf-table tr:first-child th,
+.q1-pdf-table tr:first-child td{
+  border-bottom:1.4px solid #222 !important;
+}
+/* En el PDF de la pregunta 1 NO hay líneas verticales
+   ni líneas horizontales entre las filas de datos. */
+.q1-pdf-table th + th,
+.q1-pdf-table th + td,
+.q1-pdf-table td + th,
+.q1-pdf-table td + td{
+  border-left:none !important;
+}
+.q1-pdf-table tr:not(:first-child) th,
+.q1-pdf-table tr:not(:first-child) td{
+  border-top:none !important;
+  border-bottom:none !important;
+}
+</style>
+
+
+<style id="item1-original-pdf-style">
+.item1-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.5px solid #111 !important;
+  border-bottom:1.5px solid #111 !important;
+}
+.item1-original th,
+.item1-original td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:7px 14px !important;
+  white-space:nowrap !important;
+}
+.item1-original tr:first-child th{
+  border-bottom:1.5px solid #111 !important;
+}
+.item1-original th:first-child,
+.item1-original td:first-child{
+  text-align:left !important;
+}
+.item1-original th:nth-child(2),
+.item1-original td:nth-child(2){
+  text-align:center !important;
+}
+/* Sin líneas verticales ni líneas entre filas de datos, como en el PDF. */
+.item1-original th + th,
+.item1-original td + td{
+  border-left:none !important;
+}
+.item1-original tr:not(:first-child) td{
+  border-top:none !important;
+  border-bottom:none !important;
+}
+</style>
+
+
+<style id="tablas-pdf-restantes">
+/* PREGUNTA 5: sin líneas verticales ni divisiones entre filas de datos */
+.item5-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.5px solid #111 !important;
+  border-bottom:1.5px solid #111 !important;
+}
+.item5-original th,
+.item5-original td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:6px 14px !important;
+  white-space:nowrap !important;
+}
+.item5-original thead th{
+  border-bottom:1.5px solid #111 !important;
+}
+.item5-original th:first-child,
+.item5-original td:first-child{
+  text-align:left !important;
+}
+.item5-original th:not(:first-child),
+.item5-original td:not(:first-child){
+  text-align:center !important;
+}
+
+/* PREGUNTAS 2, 4, 11 y 46: el PDF sí muestra cuadrícula completa */
+.tabla-item2,
+.item4-original,
+.tabla-item11,
+.item46-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border:1.4px solid #111 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+.tabla-item2 th, .tabla-item2 td,
+.item4-original th, .item4-original td,
+.tabla-item11 th, .tabla-item11 td,
+.item46-original th, .item46-original td{
+  border:1.4px solid #111 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  padding:6px 12px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+/* Primera columna de 4 y 11 a la izquierda como en el original */
+.item4-original th:first-child,
+.item4-original td:first-child,
+.tabla-item11 th:first-child,
+.tabla-item11 td:first-child{
+  text-align:left !important;
+}
+
+/* Primera columna de 46 centrada, como en el PDF */
+.item46-original th:first-child,
+.item46-original td:first-child{
+  text-align:center !important;
+}
+</style>
+
+
+<style id="q2-first-column-left">
+.tabla-item2 th:first-child,
+.tabla-item2 td:first-child{
+  text-align:left !important;
+}
+</style>
+
+
+<style id="q36-option-graphs-style">
+.q36-option-graph{display:block;width:min(390px,100%);height:auto;margin:4px auto;}
+</style>
+
+
+<style id="q37-bullets-style">
+.q37-bullets{margin:14px 0 4px 24px;line-height:1.9;}
+</style>
+
+
+<style id="responsive-calculadoras">
+@media (max-width: 760px) {
+  /* CASIO: el contenedor exterior es el que se desplaza horizontalmente. */
+  #casio-mobile-scroll {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    padding-bottom: 14px !important;
+  }
+
+  /* El título permanece normal; solo la fila de calculadoras es ancha. */
+  #casio-mobile-scroll > .casio-mobile-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 390px) !important;
+    gap: 10px !important;
+    width: 1190px !important;
+    min-width: 1190px !important;
+    max-width: none !important;
+    justify-content: start !important;
+    align-items: start !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div {
+    box-sizing: border-box !important;
+    width: 390px !important;
+    min-width: 390px !important;
+    max-width: 390px !important;
+    overflow: visible !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div > div:first-child {
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: 370px !important;
+    white-space: nowrap !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row img {
+    display: block !important;
+    width: auto !important;
+    max-width: 360px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* El desplazamiento usado en escritorio para la tercera imagen
+     se neutraliza en celular para que no invada otras zonas. */
+  #casio-mobile-scroll > .casio-mobile-row img[style*="translateY"] {
+    transform: none !important;
+  }
+
+  /* GENÉRICAS: se mantiene el desplazamiento horizontal aprobado. */
+  #calculadoras-genericas {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 12px !important;
+  }
+
+  #calculadoras-genericas > div:last-child {
+    justify-content: start !important;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Tercera Casio (NO RECOMENDADA): más grande y más arriba */
+  /* Tercera Casio en celular:
+     se sube el CONTENEDOR completo para evitar recortar la calculadora. */
+  #casio-mobile-scroll > .casio-mobile-row > div:nth-child(3) > div:last-child {
+    margin-top: -78px !important;
+    overflow: hidden !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div:nth-child(3) img {
+    width: 520px !important;
+    max-width: none !important;
+    height: auto !important;
+    position: relative !important;
+    left: 50% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Corrección óptica: centra el cuerpo de la calculadora, no el lienzo completo. */
+    transform: translateX(-36%) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+</style>
+
+</head><body>
+<header><div class="topbar"><div class="brand">Bachillerato por Madurez Suficiente 02-2026</div><div class="meta"><span class="pill">Modo examen</span><span class="pill">Respondidas: <b id="countTop">0/60</b></span><span class="pill timer" id="timerTop">03:00:00</span></div></div></header>
+<main><section id="startView" class="card"><h1 class="hero">Bachillerato por Madurez Suficiente 02-2026</h1>
+<div style="text-align:center; margin:14px 0 18px;"><button class="primary" id="startBtn">Iniciar Prueba</button></div>
+<div class="exam-subtitle">Adaptado por: Germán Quirós Quirós · Material original: Carlos Madrigal Gutiérrez</div>
+<div class="exam-intro">
+  <div class="instructions-title">Instrucciones:</div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Versión interactiva con las 60 preguntas.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Las representaciones gráficas necesarias aparecen directamente dentro de cada pregunta.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Para ganar esta prueba se requiere un mínimo de 42 respuestas correctas de un total de 60 preguntas.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Puedes moverte entre preguntas, devolverte o avanzar y responder en el momento que creas necesario, eso sí, si el tiempo se agota la prueba se cierra y no te dejará seguir respondiendo.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Es recomendable tener a la mano papel y lápiz para ir resolviendo los ejercicios de la prueba.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Dispones de 3 horas para responder la prueba.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Puedes utilizar calculadora científica no programable, acá te damos algunas recomendaciones tanto Casio como genéricas:</span></div>
+
+<div id="casio-mobile-scroll" style="margin:18px auto 24px; text-align:center; max-width:1180px; overflow-x:auto;">
+  <div style="font-size:23px; font-weight:800; color:#0b3b78; margin-bottom:14px;">Marca Casio</div>
+
+  
+<div class="casio-mobile-row" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; width:100%; align-items:start;">
+
+  <div style="text-align:center; min-width:0;">
+    <div style="display:inline-block; background:#0b9f4a; color:#fff; font-size:20px; font-weight:800; padding:8px 22px; border-radius:10px; margin-bottom:10px;">MUY RECOMENDADA</div>
+    <div style="font-size:18px; font-weight:700; line-height:1.6; color:#173b70; min-height:72px; margin-bottom:14px;">
+      *Casio fx-570LA X<br>*Casio fx-991LA X
+    </div>
+    <div style="height:500px; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+      <img src="imagen_001.png" alt="Casio fx-570LA X" style="display:block; height:500px; width:auto; max-width:100%; object-fit:contain;">
+    </div>
+  </div>
+
+  <div style="text-align:center; min-width:0;">
+    <div style="display:inline-block; background:#168bd2; color:#fff; font-size:20px; font-weight:800; padding:8px 22px; border-radius:10px; margin-bottom:10px;">RECOMENDADA</div>
+    <div style="font-size:18px; font-weight:700; line-height:1.6; color:#173b70; min-height:72px; margin-bottom:14px;">
+      *Casio fx-570LA CW<br>*Casio fx-991LA CW
+    </div>
+    <div style="height:500px; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+      <img src="imagen_002.png" alt="Casio fx-570LA CW" style="display:block; height:500px; width:auto; max-width:100%; object-fit:contain;">
+    </div>
+  </div>
+
+  <div style="text-align:center; min-width:0;">
+    <div style="display:inline-block; background:#FFD700; color:#111; font-size:20px; font-weight:800; padding:8px 22px; border-radius:10px; margin-bottom:10px;">NO RECOMENDADA</div>
+    <div style="font-size:18px; font-weight:700; line-height:1.6; color:#173b70; min-height:130px; margin-bottom:14px;">
+      *Casio fx-570ES PLUS<br>*Casio FX-991ES PLUS<br>*Casio fx-570ES<br>*Casio FX-991ES
+    </div>
+    <div style="height:500px; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+      <img src="imagen_003.png" alt="Casio fx-570ES PLUS" style="display:block; height:455px; width:auto; max-width:none; object-fit:contain; transform:translateY(-58px);">
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<div id="calculadoras-genericas" style="margin:34px auto 24px; text-align:center; max-width:1450px; overflow-x:auto;">
+  <div style="font-size:25px; font-weight:800; color:#173b70; margin-bottom:18px;">Genéricas</div>
+
+  <div style="display:grid; grid-template-columns:repeat(5, 250px); gap:18px; justify-content:center; min-width:1322px; align-items:start;">
+
+    <div style="grid-column:1 / 5; display:flex; justify-content:center; align-items:center; min-height:48px;">
+      <div style="display:inline-block; background:#0b9f4a; color:#fff; font-size:20px; font-weight:800; padding:8px 26px; border-radius:10px;">MUY RECOMENDADA</div>
+    </div>
+
+    <div style="grid-column:5; display:flex; justify-content:center; align-items:center; min-height:48px;">
+      <div style="display:inline-block; background:#FFD700; color:#111; font-size:20px; font-weight:800; padding:8px 20px; border-radius:10px; white-space:nowrap;">NO RECOMENDADA</div>
+    </div>
+
+    <div style="grid-column:1; height:420px; display:flex; justify-content:center; align-items:flex-start;">
+      <img src="imagen_004.png" alt="Calculadora generica negra" style="height:420px; width:auto; max-width:100%; object-fit:contain; display:block;">
+    </div>
+    <div style="grid-column:2; height:420px; display:flex; justify-content:center; align-items:flex-start;">
+      <img src="imagen_005.png" alt="Calculadora generica celeste" style="height:420px; width:auto; max-width:100%; object-fit:contain; display:block;">
+    </div>
+    <div style="grid-column:3; height:420px; display:flex; justify-content:center; align-items:flex-start;">
+      <img src="imagen_006.png" alt="Calculadora generica rosada" style="height:420px; width:auto; max-width:100%; object-fit:contain; display:block;">
+    </div>
+    <div style="grid-column:4; height:420px; display:flex; justify-content:center; align-items:flex-start;">
+      <img src="imagen_007.png" alt="Calculadora generica verde" style="height:420px; width:auto; max-width:100%; object-fit:contain; display:block;">
+    </div>
+    <div style="grid-column:5; height:420px; display:flex; justify-content:center; align-items:flex-start;">
+      <img src="imagen_008.png" alt="Calculadora generica no recomendada" style="height:420px; width:auto; max-width:100%; object-fit:contain; display:block;">
+    </div>
+
+  </div>
+</div>
+
+<p class="sub"></p></section>
+<section id="examView" style="display:none"><div class="exam-layout"><div class="card"><div class="qhead"><div class="qnum" id="qnum"></div><div class="status" id="qstatus"></div></div><div id="qcontext" class="context"></div><div id="qtext" class="qtext"></div><div id="qfigure" class="qfigure" style="display:none"><img id="qfigureimg" alt="Representación gráfica del ítem"></div><div id="qaftergraphic" class="qfigure" style="display:none"><img id="qaftergraphicimg" alt="Opciones gráficas del ítem"></div><div id="choices" class="choices"></div><div class="navbuttons"><button id="prevBtn">← Anterior</button><button id="nextBtn">Siguiente →</button></div></div><aside class="card side"><h3>Navegación</h3><div id="grid" class="grid"></div><p class="small" id="countSide">0 de 60 respondidos</p><button class="danger" id="finishBtn" style="width:100%;margin-top:8px">Finalizar examen</button></aside></div></section>
+<section id="resultView" class="card result"><h2>Resultado</h2><div class="score" id="scoreText">0/60</div><div id="percentText"></div><div class="result-grid"><div class="stat"><b id="correctStat">0</b><br>Correctas</div><div class="stat"><b id="wrongStat">0</b><br>Incorrectas</div><div class="stat"><b id="blankStat">0</b><br>Sin responder</div></div><button id="reviewBtn">Revisar respuestas</button> <button class="primary" id="restartBtn">Reiniciar</button><div id="review" class="review-list" style="display:none"></div></section></main><script>
+const FIGURES={"3":"imagen_009.svg","7":"imagen_010.svg","9":"imagen_011.svg","15":"imagen_012.svg","17":"imagen_013.svg","21":"imagen_014.svg","24":"imagen_015.svg","25":"imagen_016.svg","31":"imagen_017.svg","32":"imagen_018.svg","33":"imagen_019.svg","34":"imagen_019.svg","35":"imagen_020.svg","36":"","38":"imagen_021.svg","39":"","41":"imagen_022.svg","47":"imagen_023.svg","48":"imagen_024.svg","51":"imagen_025.svg","_18_backup":"imagen_026.svg"};
+const AFTER_FIGURES={"51":""};
+const QUESTIONS=[{"n":1,"stem":"Con base en la información dada, se concluye que el ingreso mensual promedio de los trabajadores de la empresa corresponde a","opts":["₡700 000","₡728 000","₡600 000","₡628 000"],"context":"<p>La siguiente tabla muestra el ingreso mensual (en miles de colones) de los trabajadores de una empresa:</p><table class=\"item1-original\"><tr><th>Ingreso (en miles de colones)</th><th>Cantidad de trabajadores</th></tr><tr><td>De 400 a menos de 600</td><td>46</td></tr><tr><td>De 600 a menos de 800</td><td>44</td></tr><tr><td>De 800 a 1000</td><td>10</td></tr></table>","answer":"D","img":"imagen_027.jpg"},{"n":2,"stem":"¿Cuál fue la nota final que obtuvo el estudiante en el curso de mecánica automotriz?","opts":["80,25","81,80","82,75","83,70"],"context":"<p>El siguiente cuadro muestra las calificaciones (escala de 1 a 100) obtenidas por un estudiante en un curso de mecánica automotriz, así como el valor porcentual de cada rubro calificado. La nota final se obtiene a partir de la sumatoria de los porcentajes obtenidos:</p><table class=\"tabla-item2\"><thead><tr><th>Rubro</th><th>Tareas</th><th>Examen</th><th>Prueba práctica</th><th>Proyecto final</th></tr></thead><tbody><tr><td>Valor porcentual</td><td>20 %</td><td>20 %</td><td>30 %</td><td>30 %</td></tr><tr><td>Calificación obtenida</td><td>85</td><td>90</td><td>74</td><td>82</td></tr></tbody></table>","answer":"B","img":"imagen_028.jpg"},{"n":3,"stem":"De acuerdo con la información anterior, si 2,9 kg representa a la mediana de esos datos y 2,7 kg representa a la moda, entonces, la masa promedio de los niños que nacieron en el hospital durante ese mes fue","opts":["igual que 2,7 kg.","menor que 2,7 kg.","mayor que 2,9 kg.","mayor que 2,7 kg y menor que 2,9 kg."],"context":"<p>La siguiente representación gráfica muestra la distribución de los datos correspondientes a la masa en kilogramos, de los niños que nacieron en un hospital durante un mes:</p>","answer":"C","img":"imagen_029.jpg"},{"n":4,"stem":"Con base en la información anterior, se cumple que al menos el 50 % de los docentes tiene edades entre","opts":["35 y 55 años.","27 y 35 años.","43 y 55 años.","55 y 67 años."],"context":"<p>Considere la siguiente información referida a las edades (en años cumplidos) de los docentes de una universidad:</p><table class=\"item4-original\"><tr><td>Mínimo</td><td>27</td></tr><tr><td>Cuartil 1</td><td>35</td></tr><tr><td>Mediana</td><td>43</td></tr><tr><td>Cuartil 3</td><td>55</td></tr><tr><td>Máximo</td><td>67</td></tr></table>","answer":"A","img":"imagen_030.jpg"},{"n":5,"stem":"¿Cuál es la probabilidad de que ocurra el evento \\(E \\cup F\\)?","opts":["\\(1\\)","\\(\\frac{1}{87}\\)","\\(\\frac{2}{87}\\)","\\(\\frac{28}{87}\\)"],"context":"<p>Para responder los ítems 5 y 6 considere la siguiente distribución por sexo de los estudiantes matriculados en una academia de idiomas. Cada estudiante está matriculado en un único idioma:</p><table class=\"item5-original\"><thead><tr><th>Sexo / idioma</th><th>Inglés</th><th>Portugués</th><th>Italiano</th><th>Total</th></tr></thead><tbody><tr><td>Mujeres</td><td>15</td><td>18</td><td>11</td><td>44</td></tr><tr><td>Hombres</td><td>14</td><td>12</td><td>17</td><td>43</td></tr><tr><td>Total</td><td>29</td><td>30</td><td>28</td><td>87</td></tr></tbody></table><p>Considere los siguientes eventos:</p><p>E: Que sea una mujer que estudie italiano.<br>F: Que sea un hombre que estudie italiano.<br>G: Que sea un hombre que estudie inglés o portugués.<br>H: Que sea un hombre o una mujer que estudie inglés.</p>","answer":"D","img":"imagen_031.jpg"},{"n":6,"stem":"¿Cuál es la probabilidad de que ocurra el evento \\(G \\cap H\\)?","opts":["\\(\\frac{14}{87}\\)","\\(\\frac{15}{87}\\)","\\(\\frac{40}{87}\\)","\\(\\frac{43}{87}\\)"],"context":"","answer":"A","img":"imagen_032.jpg","text":"¿Cuál es la probabilidad de que ocurra el evento G ∩ H?"},{"n":7,"stem":"Si del total de personas se elige a una al azar, entonces, la probabilidad de que esta practique tenis y ajedrez corresponde a","opts":["0","\\(\\frac{3}{31}\\)","\\(\\frac{11}{31}\\)","\\(\\frac{23}{31}\\)"],"context":"<p>Para responder los ítems 7 y 8 considere la siguiente información:</p><p>Considere el siguiente diagrama que ilustra los gustos y preferencias de 31 personas por la práctica del tenis, la natación y el ajedrez:</p>","answer":"A","img":"imagen_033.jpg"},{"n":8,"stem":"Si del total de personas se elige a una al azar, entonces, la probabilidad de que esta practique solo dos de esos deportes corresponde a","opts":["\\(\\frac{10}{31}\\)","\\(\\frac{12}{31}\\)","\\(\\frac{17}{31}\\)","\\(\\frac{19}{31}\\)"],"context":"","answer":"B","img":"imagen_034.jpg","text":"Si del total de personas se elige a una al azar, entonces, la probabilidad de que esta practique tenis y ajedrez corresponde a"},{"n":9,"stem":"Si en la competencia hubo un solo ganador, ¿cuántos minutos tardó en completarla?","opts":["15","19","40","42"],"context":"Para responder los ítems 9 y 10 considere la siguiente información:<br><br>Seguidamente se resumen los tiempos, en minutos, obtenidos por los participantes de dos grupos en una misma competencia de ciclismo (cada grupo participó con 40 ciclistas y todos terminaron la competencia). Clasifican para la final aquellos participantes que obtuvieron tiempos iguales o menores que 30 minutos:","answer":"A","img":"imagen_035.jpg","text":"Si en la competencia hubo un solo ganador, ¿cuántos minutos tardó en completarla?"},{"n":10,"stem":"Con base en la información dada, ¿cuál de las siguientes afirmaciones es verdadera?","opts":["El peor de los tiempos se registró en el grupo 2.","Solo el 25 % de los participantes de ambos grupos clasificó a la final.","Al menos el 50 % de los participantes de ambos grupos clasificó a la final.","Con certeza, en ambos grupos hubo al menos un participante que obtuvo un tiempo de 30 minutos."],"answer":"C","img":"imagen_036.jpg"},{"n":11,"stem":"¿Cuál de las siguientes afirmaciones es verdadera?","opts":["La variabilidad relativa de las notas finales del curso de estadística es igual que la de finanzas.","La variabilidad relativa de las notas finales del curso de contabilidad es igual que la de finanzas.","La variabilidad relativa de las notas finales del curso de estadística es menor que la de finanzas.","La variabilidad relativa de las notas finales del curso de contabilidad es mayor que la de finanzas."],"context":"Para responder los ítems 11 y 12 considere la siguiente información:<br><br>En la siguiente tabla se muestran medias aritméticas o promedios (\\(\\bar{x}\\)), desviaciones estándar (\\(\\sigma\\)), coeficientes de variación (\\(C_v\\)), posiciones relativas (\\(P_r\\)) y las notas finales (en escala de 1 a 100) obtenidas por Andrea en tres cursos universitarios durante un semestre:<br><br><table class=\"tabla-item11\"><thead><tr><th>Curso</th><th>\\(\\bar{x}\\)</th><th>\\(\\sigma\\)</th><th>Nota final de Andrea</th><th>\\(C_v\\)</th><th>Posición relativa de Andrea</th></tr></thead><tbody><tr><td>Estadística</td><td>80</td><td>6</td><td>83</td><td>7,5</td><td>0,5</td></tr><tr><td>Contabilidad</td><td>70</td><td>7</td><td>77</td><td>10</td><td>1</td></tr><tr><td>Finanzas</td><td>90</td><td>6</td><td>92</td><td>—</td><td>—</td></tr></tbody></table><br><br>Fórmulas:<br><br>Coeficiente de variación (\\(C_v\\)): \\(C_v=\\)<span class=\"html-frac\"><span class=\"frac-top\">Desviación estándar</span><span class=\"frac-bottom\">Media aritmética</span></span> \\(\\cdot 100\\)<br><br>Posición relativa (\\(P_r\\)) de un dato: \\(P_r=\\)<span class=\"html-frac\"><span class=\"frac-top\">Dato − Media aritmética</span><span class=\"frac-bottom\">Desviación estándar</span></span>","answer":"D","img":"imagen_037.jpg"},{"n":12,"stem":"¿Cuál de las siguientes afirmaciones es verdadera?","opts":["Andrea obtuvo una menor posición relativa en contabilidad que en finanzas.","Andrea obtuvo una mayor posición relativa en contabilidad que en finanzas.","Andrea obtuvo una menor posición relativa en estadística que en finanzas.","Andrea obtuvo la misma posición relativa en estadística que en finanzas."],"context":"","answer":"B","img":"imagen_038.jpg","text":"¿Cuál de las siguientes afirmaciones es verdadera?"},{"n":13,"stem":"Si la medida del radio de la circunferencia \"c\" es 4 y su centro es (0, −1), entonces la ecuación de \"c\" corresponde a","opts":["\\((x-1)^2+y^2=16\\)","\\((x+1)^2+y^2=16\\)","\\(x^2+(y-1)^2=16\\)","\\(x^2+(y+1)^2=16\\)"],"context":"","answer":"D","img":"imagen_039.jpg","text":"Si la medida del radio de la circunferencia \"c\" es 4 y su centro es (0, −1), entonces, la ecuación de \"c\" corresponde a","options":["\\((x-1)^2+y^2=16\\)","\\((x+1)^2+y^2=16\\)","\\(x^2+(y-1)^2=16\\)","\\(x^2+(y+1)^2=16\\)"]},{"n":14,"stem":"Una estación de bomberos tiene un radio comunicador el cual emite una señal inalámbrica cuyo alcance máximo es de 15 km a su alrededor. Tomando como punto de partida un tanque de agua que hay en la comunidad y que se considera el origen de un sistema de coordenadas. Si la estación de bomberos se ubica 3 km hacia el oeste (eje x negativo) y 2 km hacia el sur (eje “y” negativo) de dicho tanque, entonces, ¿cuál es la representación algebraica de la circunferencia que modela el alcance máximo, en kilómetros, de la señal inalámbrica emitida por el radio comunicador?","opts":["\\((x-3)^2+(y+2)^2=225\\)","\\((x+3)^2+(y-2)^2=225\\)","\\((x+3)^2+(y+2)^2=225\\)","\\((x-3)^2+(y-2)^2=225\\)"],"context":"","answer":"C","img":"imagen_040.jpg","text":"Una estación de bomberos tiene un radio comunicador el cual emite una señal inalámbrica cuyo alcance máximo es de 15 km a su alrededor. Tomando como punto de partida un tanque de agua que hay en la comunidad y que se considera el origen de un sistema de coordenadas. Si la estación de bomberos se ubica 3 km hacia el oeste (eje “x” negativo) y 2 km hacia el sur (eje “y” negativo) de dicho tanque; entonces, ¿cuál es la representación algebraica de la circunferencia que modela el alcance máximo, en kilómetros, de la señal inalámbrica emitida por el radio comunicador?","options":["\\((x-3)^2+(y+2)^2=225\\)","\\((x+3)^2+(y-2)^2=225\\)","\\((x+3)^2+(y+2)^2=225\\)","\\((x-3)^2+(y-2)^2=225\\)"]},{"n":15,"stem":"De acuerdo con la información dada, ¿cuál es la ecuación de la circunferencia c?","opts":["\\((x+1)^2+(y+3)^2=1\\)","\\((x-1)^2+(y-3)^2=1\\)","\\((x-2)^2+(y-3)^2=1\\)","\\((x+2)^2+(y+3)^2=1\\)"],"context":"<p>Considere la siguiente representación gráfica de la circunferencia <em>c</em>, cuyo radio mide 1 y cuyo centro es O:</p>","answer":"B","img":"imagen_041.jpg"},{"n":16,"stem":"Un rociador circular de riego (dispositivo electrónico) se coloca en un jardín. El agua cubre una zona delimitada por la circunferencia dada por \\((x-5)^2+(y-3)^2=25\\), ¿cuál es la longitud máxima, en metros, de lado a lado de la zona que logra humedecer el agua?","opts":["5 m","10 m","25 m","50 m"],"context":"","answer":"B","img":"imagen_042.jpg"},{"n":17,"stem":"Si a “c” se le aplica una traslación de una unidad hacia arriba (paralela al eje y), entonces, se obtiene una circunferencia cuya ecuación corresponde a","opts":["\\((x-2)^2+(y-2)^2=4\\)","\\((x+2)^2+(y+4)^2=4\\)","\\((x-2)^2+(y-4)^2=4\\)","\\((x+2)^2+(y+2)^2=4\\)"],"context":"<p>Para responder los ítems 17 y 18 considere la siguiente información referida a la circunferencia “c” de centro O:</p>","answer":"C","img":"imagen_043.jpg"},{"n":18,"stem":"Si a “c” se le aplica una traslación de 2 unidades a la izquierda (paralela al eje x) y luego una unidad hacia abajo (paralela al eje y), entonces, se obtiene una circunferencia cuya ecuación corresponde a","opts":["\\(x^2+(y-4)^2=4\\)","\\(x^2+(y-2)^2=4\\)","\\(x^2+(y-4)^2=8\\)","\\((x+4)^2+(y+3)^2=4\\)"],"context":"","answer":"B","img":"imagen_044.jpg"},{"n":19,"stem":"Sea la circunferencia dada por \\((x+1)^2+y^2=5\\). Si se traslada y se obtiene \\(x^2+(y+2)^2=5\\), entonces la traslación aplicada corresponde a una unidad hacia la","opts":["derecha paralela al eje x y dos unidades hacia abajo paralela al eje y.","derecha paralela al eje x y dos unidades hacia arriba paralela al eje y.","izquierda paralela al eje x y dos unidades hacia arriba paralela al eje y.","izquierda paralela al eje x y dos unidades hacia abajo paralela al eje y."],"context":"","answer":"A","img":"imagen_045.jpg"},{"n":20,"stem":"¿Cuál opción contiene las coordenadas de un punto exterior a la circunferencia dada por \\(x^2+(y+1)^2=3\\)?","opts":["\\((0,0)\\)","\\((0,1)\\)","\\((0,-1)\\)","\\((-1,0)\\)"],"context":"","answer":"B","img":"imagen_046.jpg"},{"n":21,"stem":"Además, durante un juego Esteban lanzó cuatro bolinchas, identificadas con las letras K, L, M y N, las cuales quedaron ubicadas de la siguiente manera:<ul style='margin:10px 0 14px 24px'><li>K en el punto correspondiente a (40, 70)</li><li>L en el punto correspondiente a (95, 25)</li><li>M en el punto correspondiente a (80, 55)</li><li>N en el punto correspondiente a (80, 30)</li></ul>De acuerdo con la información anterior, ¿cuál bolincha quedó ubicada en el interior del objetivo?","opts":["K","L","M","N"],"context":"Un juego consiste en lanzar, con el dedo pulgar de una mano, una bolincha (pequeña esfera de vidrio) a un objetivo con forma circular dibujado en el suelo. La medida del diámetro, de ese objetivo, es 90 cm.<br><br>La siguiente representación gráfica, cuyas unidades están en centímetros, muestra el objetivo circular:","answer":"C","img":"imagen_047.jpg"},{"n":22,"stem":"¿Cuál opción contiene una recta exterior a la circunferencia dada por \\((x+1)^2+y^2=2\\)?","opts":["\\(y=1\\)","\\(y=0\\)","\\(x=1\\)","\\(x=0\\)"],"context":"","answer":"C","img":"imagen_048.jpg"},{"n":23,"stem":"¿Cuál opción contiene una recta tangente a la circunferencia dada por \\(x^2+(y+1)^2=1\\)?","opts":["\\(y=0\\)","\\(x=0\\)","\\(y=1\\)","\\(x=2\\)"],"context":"","answer":"A","img":"imagen_049.jpg"},{"n":24,"stem":"De acuerdo con la información dada, el área en centímetros cuadrados de esa ventana corresponde a un valor","opts":["mayor que 1600, pero menor que 2400.","mayor que 2400, pero menor que 4000.","mayor que 4000, pero menor que 4200.","mayor que 4200, pero menor que 5000."],"context":"<p>La siguiente representación gráfica en el plano cartesiano muestra el diseño de una ventana lateral de un automóvil, cuyas dimensiones están dadas en centímetros:</p>","answer":"B","img":"imagen_050.jpg"},{"n":25,"stem":"De acuerdo con la información anterior, el área de la entrada del túnel en metros cuadrados corresponde a un valor","opts":["mayor que 21, pero menor que 40.","mayor que 40, pero menor que 56.","mayor que 56, pero menor que 63.","mayor que 63, pero menor que 90."],"context":"<p>La siguiente representación gráfica ilustra la forma que tiene la entrada de un túnel en una carretera, cuya altura máxima es de 7 m y el ancho de la calle es de 8 m:</p>","answer":"B","img":"imagen_051.jpg"},{"n":26,"stem":"La medida del ángulo interno de un polígono regular es 60°. Si la longitud del lado es 6, entonces, ¿cuál es su perímetro?<div class=\"q26-formula-after\"><div class=\"q26-formula-box\" aria-label=\"Fórmula\"><span class=\"q26-left\">m ∠ i =</span><span class=\"q26-frac\"><span class=\"q26-num\">180°(n − 2)</span><span class=\"q26-den\">n</span></span></div></div>","opts":["24","18","16","10"],"context":"","answer":"B","img":"imagen_052.jpg"},{"n":27,"stem":"Si el número de diagonales de un polígono regular es 2 y su lado mide 8, entonces, ¿cuál es el perímetro?<div class=\"formula-after-stem\"><div class=\"plain-formula-box\" aria-label=\"Fórmula de diagonales\"><span>D =</span><span class=\"plain-frac\"><span class=\"plain-num\">n(n − 3)</span><span class=\"plain-den\">2</span></span></div></div>","opts":["10","16","32","64"],"context":"","answer":"C","img":"imagen_053.jpg"},{"n":28,"stem":"Una copa se fabricó a partir de una esfera de vidrio de 5 cm de radio, a la cual se le realizó un corte plano para obtener su abertura. Si el centro de dicha abertura quedó a 4 cm del centro de la esfera, entonces, ¿cuál es la medida del radio de la abertura de la copa?","opts":["1 cm","2 cm","3 cm","6 cm"],"context":"","answer":"C","img":"imagen_054.jpg"},{"n":29,"stem":"Si el radio de una esfera mide 15 y esta se interseca con un plano de modo que se forma una sección plana de radio 12, entonces, ¿a qué distancia del centro de la esfera se encuentra dicha sección?","opts":["3","5","9","13"],"context":"","answer":"C","img":"imagen_055.jpg"},{"n":30,"stem":"Un trozo de madera con forma de cilindro circular recto, de 100 cm de altura y 20 cm de radio en sus bases, se corta perpendicularmente a ellas para generar dos piezas iguales. ¿Cuál es el área aproximada, en centímetros cuadrados, de la sección plana generada en una de las piezas?","opts":["480","1000","2000","4000"],"context":"","answer":"D","img":"imagen_056.jpg"},{"n":31,"stem":"De acuerdo con la información de la gráfica, ¿cuál es la cantidad total de ejes de simetría que se le pueden trazar al polígono ACDB?","opts":["4","3","2","1"],"context":"<p>Considere el siguiente polígono ACDB:</p>","answer":"A","img":"imagen_057.jpg"},{"n":32,"stem":"De acuerdo con la información de la gráfica, ¿cuál punto corresponde a la imagen de E con respecto al eje y?","opts":["H","G","J","K"],"context":"<p>Considere el siguiente polígono EFGHJK:</p>","answer":"B","img":"imagen_058.jpg"},{"n":33,"stem":"De acuerdo con la información de la gráfica, el triángulo P es el resultado de aplicarle al triángulo Q una homotecia con centro en el origen de coordenadas. ¿Cuál es la razón de proporcionalidad aplicada?","opts":["2","\\(\\frac{1}{2}\\)","−2","\\(-\\frac{1}{2}\\)"],"context":"<p>Para responder los ítems 33 y 34 considere la siguiente información:</p>","answer":"D","img":"imagen_059.jpg"},{"n":34,"stem":"De acuerdo con la información de la gráfica, el triángulo W es el resultado de aplicarle al triángulo P una reflexión. ¿Sobre cuál eje de reflexión se aplicó?","opts":["\\(x=2\\)","\\(y=2\\)","\\(x=0\\)","\\(y=0\\)"],"context":"<p>Para responder los ítems 33 y 34 considere la siguiente información:</p>","answer":"B","img":"imagen_060.jpg"},{"n":35,"stem":"De acuerdo con la información de la gráfica, si al rombo se le aplica una rotación de 90° en sentido antihorario (giro a la izquierda) con centro en el origen del sistema de coordenadas, ¿cuáles son las coordenadas del punto imagen de P?","opts":["\\((2,4)\\)","\\((-2,4)\\)","\\((2,-4)\\)","\\((-4,2)\\)"],"context":"<p>Considere la siguiente información:</p>","answer":"D","img":"imagen_061.jpg"},{"n":36,"stem":"¿Cuál de las siguientes gráficas corresponde a una función donde “x” es la variable independiente y “y” es la variable dependiente?","opts":["<img class=\"q36-option-graph\" src=\"imagen_062.svg\" alt=\"Gráfica A\">","<img class=\"q36-option-graph\" src=\"imagen_063.svg\" alt=\"Gráfica B\">","<img class=\"q36-option-graph\" src=\"imagen_064.svg\" alt=\"Gráfica C\">","<img class=\"q36-option-graph\" src=\"imagen_065.svg\" alt=\"Gráfica D\">"],"context":"","answer":"A","img":"imagen_066.jpg"},{"n":37,"stem":"Considere las siguientes funciones \\(m\\) y \\(r\\) con sus respectivos dominios, ámbitos y criterios:<div class=\"q37-bullets\"><div>• \\(m:[-4,0]\\to[-1,3]\\), con \\(m(x)=x+3\\)</div><div>• \\(r:[-2,2]\\to[-4,0]\\), con \\(r(x)=x^2-4\\)</div></div><div style=\"margin-top:14px;\">¿Cuál es la composición de \\((m\\circ r)(x)\\)?</div>","opts":["\\(x^2-1\\)","\\(x^2+5\\)","\\(x^2+x-1\\)","\\(x^2+6x+5\\)"],"context":"","answer":"A","img":"imagen_067.jpg"},{"n":38,"stem":"¿Cuál fue la temperatura que registró ese termómetro transcurridas 8 horas desde el inicio de ese día?","opts":["0 °C","5 °C","6 °C","10 °C"],"context":"<p>Para responder los ítems 38 y 39 considere la siguiente información:</p><p>La siguiente representación corresponde a la función \\(t(x)\\), la cual determina la temperatura \\(t\\), en grados Celsius, registrada por un termómetro en una ciudad durante cierto día, en función del tiempo “\\(x\\)” en horas transcurridas desde el inicio de ese día, con \\(0\\le x\\le18\\):</p>","answer":"B","img":"imagen_068.jpg"},{"n":39,"stem":"¿Cuál fue la temperatura que registró ese termómetro transcurridas 8 horas desde el inicio de ese día?","opts":["10","12","15","18"],"context":"","answer":"B","img":"imagen_069.jpg"},{"n":40,"stem":"El ingreso total \\(I(x)\\) de vender \\(x\\) cantidad de artículos está dado por la función lineal \\(I(x)=px\\) (donde \\(p\\) es el precio por artículo). Si se venden 2 artículos se obtiene un ingreso total de 6 dólares, ¿cuál es el precio \\(p\\) de cada artículo?","opts":["2","3","4","8"],"context":"","answer":"B","img":"imagen_070.jpg"},{"n":41,"stem":"Con base en la información dada, ¿en cuál valor de x alcanza h su valor máximo?","opts":["0","1","4","9"],"context":"<p>Considere la siguiente gráfica de la función cuadrática “h”, cuyo vértice es \\((1,9)\\):</p>","answer":"B","img":"imagen_071.jpg"},{"n":42,"stem":"¿Cuáles son las coordenadas del punto de intersección con el eje \\(y\\) de la recta dada por \\(y=3x+6\\)?","opts":["\\((-2,0)\\)","\\((0,-2)\\)","\\((6,0)\\)","\\((0,6)\\)"],"context":"","answer":"D","img":"imagen_072.jpg"},{"n":43,"stem":"Un laboratorio clínico analiza la reacción alérgica \\(r(x)\\), medida en milímetros de enrojecimiento en la piel, que produce cierto fármaco en un paciente según la dosis \\(x\\), administrada en miligramos (mg). La reacción alérgica está modelada por la función \\(r(x)=3x^2-18x+32\\). ¿Cuál es la dosis en miligramos que se debe administrar para provocar la mínima reacción alérgica en la piel del paciente?","opts":["3","5","6","18"],"context":"","answer":"A","img":"imagen_073.jpg"},{"n":44,"stem":"La estatura \\(e(x)\\), en centímetros, de una mujer adulta se estima a partir de la longitud de su fémur \\(x\\), (en centímetros) mediante la función: \\(e(x)=2{,}47x+54{,}1\\). Si unos restos óseos indican que la estatura de una mujer adulta era de 165,25 cm, entonces, ¿cuál era la longitud de su fémur?","opts":["45,00 cm","53,40 cm","69,90 cm","22,94 cm"],"context":"","answer":"A","img":"imagen_074.jpg"},{"n":45,"stem":"En una fábrica de juguetes se producen únicamente carritos de madera y trenes de metal. Cada carrito requiere 5 h de ensamblaje y 2 h de pintura; mientras que cada tren requiere 7 h de ensamblaje y 3 h de pintura. Si en total se utilizaron 250 h para ensamblaje y 105 h para pintura, entonces, ¿cuántos carritos de madera se fabricaron?","opts":["35","12","30","15"],"context":"","answer":"D","img":"imagen_075.jpg"},{"n":46,"stem":"Con base en la información dada, ¿cuántos colones cuesta cada mensaje de texto?","opts":["30","60","75","120"],"context":"<p>Una empresa de comunicación telefónica ofrece a sus clientes dos planes de servicios móviles que incluyen mensajes de texto y minutos de voz. El costo mensual de cada plan está determinado exclusivamente por la suma del precio de los mensajes de texto y el precio de los minutos de voz, cobrándose la misma tarifa unitaria por servicio en ambos planes. En la siguiente tabla se muestran las características de cada opción:</p><table class=\"item46-original\"><tr><th>Plan</th><th>Costo</th><th>Cantidad de mensajes de texto</th><th>Minutos de voz</th></tr><tr><td>A</td><td>₡18 000</td><td>300</td><td>60</td></tr><tr><td>B</td><td>₡24 000</td><td>200</td><td>120</td></tr></table>","answer":"A","img":"imagen_076.jpg"},{"n":47,"stem":"De acuerdo con la información dada, un intervalo del dominio de f, donde f posee inversa, corresponde a","opts":["]0,3[","]−2,2[","]−3,0[","]−4,2["],"context":"<p>Considere la siguiente gráfica de la función f:</p>","answer":"C","img":"imagen_077.jpg"},{"n":48,"stem":"Si se desea que f tenga inversa, entonces, un posible dominio para f corresponde a","opts":["]−1,1[","]0,+∞[","]−∞,1]","]−1,+∞["],"context":"<p>Una posible gráfica de la función \\(f(x)=-x^2+1;\\;x\\in\\mathbb{R}\\) es la siguiente:</p>","answer":"B","img":"imagen_078.jpg"},{"n":49,"stem":"¿Cuál es la inversa de la función \\(f\\) definida por \\(f(x)=\\frac{x}{2}-4\\)?","opts":["\\(f^{-1}(x)=2x+4\\)","\\(f^{-1}(x)=2x-4\\)","\\(f^{-1}(x)=2x+8\\)","\\(f^{-1}(x)=-2x-8\\)"],"context":"","answer":"C","img":"imagen_079.jpg"},{"n":50,"stem":"Sea la función \\(f\\) definida por \\(f(x)=\\sqrt{x}\\). Si su gráfica original se traslada verticalmente dos unidades hacia arriba para obtener la función \\(g\\), entonces, ¿cuál es el criterio de \\(g\\)?","opts":["\\(g(x)=\\sqrt{x+2}\\)","\\(g(x)=\\sqrt{x}+2\\)","\\(g(x)=2\\sqrt{x}\\)","\\(g(x)=\\sqrt{2x}\\)"],"context":"","answer":"B","img":"imagen_080.jpg"},{"n":51,"stem":"Con base en la información dada, ¿cuál es la representación gráfica de la función inversa de f?","opts":["<img class=\"q36-option-graph\" src=\"imagen_081.svg\" alt=\"Gráfica A\">","<img class=\"q36-option-graph\" src=\"imagen_082.svg\" alt=\"Gráfica B\">","<img class=\"q36-option-graph\" src=\"imagen_083.svg\" alt=\"Gráfica C\">","<img class=\"q36-option-graph\" src=\"imagen_084.svg\" alt=\"Gráfica D\">"],"context":"<p>Considere la representación gráfica de la función f:</p>","answer":"A","img":"imagen_085.svg"},{"n":52,"stem":"La función \\(p\\), la cual determina la población \\(p(t)\\) en miles, de cierto tipo de parásitos a las \\(t\\) horas de haberse iniciado un experimento de laboratorio, está definida por \\(p(t)=b^t\\). Si transcurridas 3 horas desde el inicio del experimento hay 8 mil individuos, ¿cuál será la población, en miles, a las 6 horas de iniciado dicho experimento?","opts":["16","24","48","64"],"context":"","answer":"D","img":"imagen_086.jpg"},{"n":53,"stem":"La función \\(h\\), la cual determina el tiempo aproximado \\(h(x)\\) en segundos, que tarda un objeto, en condiciones controladas, en tocar el suelo al dejarlo caer desde una altura \\(x\\) (en metros) está definida por \\(h(x)=\\sqrt{x}\\). Si un objeto tarda exactamente 5 segundos en tocar el suelo, ¿desde cuál altura se dejó caer?","opts":["10","20","25","50"],"context":"","answer":"C","img":"imagen_087.jpg"},{"n":54,"stem":"La función \\(r\\), la cual determina la resistencia \\(r(x)\\) en ohmios, medida en un conductor eléctrico, está definida por \\(r(x)=\\log_2(x)\\), donde \\(x\\) representa la longitud en metros de ese conductor, con \\(2\\le x\\le32\\). Si la longitud del conductor es 8 m, entonces, ¿cuál es la resistencia en ohmios en ese conductor?","opts":["2","3","4","5"],"context":"","answer":"B","img":"imagen_088.jpg"},{"n":55,"stem":"¿Cuál de las siguientes funciones es inversa de la función \\(f(x)=\\log_3(x)\\)?","opts":["\\(f^{-1}(x)=3^x\\)","\\(f^{-1}(x)=x^3\\)","\\(f^{-1}(x)=(x)^{\\frac{1}{3}}\\)","\\(f^{-1}(x)=\\left(\\frac13\\right)^x\\)"],"context":"","answer":"A","img":"imagen_089.jpg"},{"n":56,"stem":"En un laboratorio de informática, dos servidores analizan líneas de código simultáneamente. La cantidad de procesos del primer servidor se comporta según la expresión \\(4^{x+1}\\), mientras que la del segundo servidor sigue la expresión \\(8^x\\). Si la variable \\(x\\) representa el tiempo de análisis en minutos, ¿qué valor debe tomar \\(x\\) para que ambos servidores tengan exactamente la misma cantidad de procesos?","opts":["1","2","3","4"],"context":"","answer":"B","img":"imagen_090.jpg"},{"n":57,"stem":"Considere la función \\(p\\) que determina la población \\(p(t)\\) de cierto tipo de ameba transcurridos \\(t\\) minutos. Si la población inicial es de 100 individuos y se duplica cada minuto que pasa, entonces, ¿cuál es el criterio del modelo matemático que explica la situación descrita?","opts":["\\(p(t)=100^{2t}\\)","\\(p(t)=100\\cdot 2t\\)","\\(p(t)=100\\cdot 2^t\\)","\\(p(t)=100+2^t\\)"],"context":"","answer":"C","img":"imagen_091.jpg"},{"n":58,"stem":"Una empresa de mensajería cobra un monto fijo de ₡1500 por el envío de un paquete, más un costo adicional de ₡250 por cada kilómetro recorrido. Si \\(C(x)\\) es el costo total en colones donde \\(x\\) representa la distancia en kilómetros, entonces, ¿cuál ecuación modela correctamente esta situación?","opts":["\\(C(x)=1500x+250x\\)","\\(C(x)=250x-1500\\)","\\(C(x)=1500x+250\\)","\\(C(x)=250x+1500\\)"],"context":"","answer":"D","img":"imagen_092.jpg"},{"n":59,"stem":"El largo de un terreno rectangular mide el doble de su ancho. Si el área total de ese terreno está dada en metros cuadrados, entonces, ¿cuál ecuación modela correctamente el área \\(A(x)\\) del terreno en función de su ancho denotado con \\(x\\)?","opts":["\\(A(x)=x^2\\)","\\(A(x)=2x^2\\)","\\(A(x)=4x^2\\)","\\(A(x)=x^2+2\\)"],"context":"","answer":"B","img":"imagen_093.jpg"},{"n":60,"stem":"Un científico determina que la acidez \\(A(t)\\) de una solución química se comporta según un modelo logarítmico de base 10 que depende del tiempo \\(t\\) en minutos. Si a los 10 minutos la acidez registra un valor exacto de 1, entonces, ¿cuál ecuación modela correctamente esta situación?","opts":["\\(A(t)=\\log(t)\\)","\\(A(t)=10\\log(t)\\)","\\(A(t)=\\log(t)+1\\)","\\(A(t)=\\log(t)+10\\)"],"context":"","answer":"A","img":"imagen_094.jpg"}],TOTAL=QUESTIONS.length,LIMIT=3*60*60;
+const SOLUTIONS={"1":"Media agrupada: \\(\\displaystyle \\bar{x}=\\frac{500(46)+700(44)+900(10)}{100}=628\\). Entonces, el ingreso medio es ₡628 000.","2":"Media ponderada: \\(\\displaystyle 85(0{,}20)+90(0{,}20)+74(0{,}30)+82(0{,}30)=81{,}80\\).","3":"La distribución presenta asimetría hacia la derecha; por ello, \\(\\text{moda}<\\text{mediana}<\\text{media}\\). Corresponde la opción C.","4":"Entre \\(Q_1=35\\) y \\(Q_3=55\\) se encuentra el \\(50\\%\\) central de los datos.","5":"Se suman las personas del evento indicado: \\(11+17=28\\). Por tanto, \\(\\displaystyle P=\\frac{28}{87}\\).","6":"La intersección indicada contiene 14 personas. Por tanto, \\(\\displaystyle P=\\frac{14}{87}\\).","7":"Según el diagrama, el evento solicitado no contiene puntos muestrales; por tanto, \\(P=0\\).","8":"Las regiones que representan exactamente dos deportes suman 12 personas. Por tanto, \\(\\displaystyle P=\\frac{12}{31}\\).","9":"Se comparan los tiempos registrados; el ganador corresponde al menor tiempo: \\(15\\) minutos.","10":"Al interpretar las medidas de posición dadas, la afirmación correcta corresponde a C.","11":"Finanzas: \\(\\displaystyle CV=\\frac{6}{90}(100)\\approx6{,}67\\%\\). Contabilidad: \\(\\displaystyle CV=\\frac{7}{70}(100)=10\\%\\). Contabilidad tiene mayor variabilidad relativa.","12":"Finanzas: \\(\\displaystyle \\frac{92-90}{6}=\\frac13\\). Contabilidad: \\(\\displaystyle \\frac{77-70}{7}=1\\). Andrea tiene mayor posición relativa en Contabilidad.","13":"Centro \\((0,-1)\\) y radio \\(4\\): \\(\\displaystyle x^2+(y+1)^2=16\\).","14":"Centro \\((-3,-2)\\) y radio \\(15\\): \\(\\displaystyle (x+3)^2+(y+2)^2=225\\).","15":"De la gráfica: centro \\((1,3)\\) y radio \\(1\\). Entonces, \\(\\displaystyle (x-1)^2+(y-3)^2=1\\).","16":"\\(r^2=25\\Rightarrow r=5\\). Por tanto, el diámetro es \\(2r=10\\,\\text{m}\\).","17":"Aplicando la traslación indicada se obtiene \\(\\displaystyle (x-2)^2+(y-4)^2=4\\).","18":"Aplicando la traslación indicada se obtiene \\(\\displaystyle x^2+(y-2)^2=4\\).","19":"El centro pasa de \\((-1,0)\\) a \\((0,-2)\\): \\(1\\) unidad a la derecha y \\(2\\) hacia abajo.","20":"Para \\((0,1)\\): \\(\\displaystyle 0^2+(1+1)^2=4>3\\); por ello, el punto está en el exterior.","21":"Al comparar la distancia de \\(M\\) al centro con el radio, \\(M\\) queda en el interior.","22":"Centro \\((-1,0)\\), radio \\(\\sqrt2\\). La distancia del centro a \\(x=1\\) es \\(2\\); como \\(2>\\sqrt2\\), la recta es exterior.","23":"Centro \\((0,-1)\\), radio \\(1\\). La distancia del centro a \\(y=0\\) es \\(1\\), igual al radio; por tanto, la recta es tangente.","24":"Al calcular el área de la figura con las medidas dadas se obtiene el intervalo indicado en A.","25":"Al calcular el área de la entrada del túnel se obtiene el intervalo indicado en B.","26":"\\(\\displaystyle 60=\\frac{180(n-2)}{n}\\Rightarrow 60n=180n-360\\Rightarrow n=3\\). Por tanto, \\(P=3(6)=18\\).","27":"\\(\\displaystyle 2=\\frac{n(n-3)}2\\Rightarrow n(n-3)=4\\Rightarrow n=4\\). Por tanto, \\(P=4(8)=32\\).","28":"Por Pitágoras: \\(\\displaystyle r^2+4^2=5^2\\Rightarrow r^2=9\\Rightarrow r=3\\,\\text{cm}\\).","29":"Por Pitágoras: \\(\\displaystyle d^2+12^2=15^2\\Rightarrow d^2=81\\Rightarrow d=9\\).","30":"El corte longitudinal forma un rectángulo de \\(100\\,\\text{cm}\\times40\\,\\text{cm}\\). Entonces, \\(\\displaystyle A=100(40)=4000\\,\\text{cm}^2\\).","31":"La figura posee \\(4\\) ejes de simetría.","32":"Reflejar respecto del eje \\(y\\) cambia el signo de \\(x\\) y conserva \\(y\\); la imagen de \\(E\\) es \\(G\\).","33":"La transformación de \\(Q\\) a \\(P\\) tiene razón \\(\\displaystyle -\\frac12\\).","34":"\\(P\\) y \\(W\\) son simétricos respecto de la recta \\(y=2\\).","35":"Rotación de \\(90^\\circ\\) antihoraria: \\((x,y)\\mapsto(-y,x)\\). Por tanto, \\((2,4)\\mapsto(-4,2)\\).","36":"La opción A cumple la prueba de la recta vertical: a cada valor de \\(x\\) le corresponde un único valor de \\(y\\).","37":"\\(\\displaystyle (m\\circ r)(x)=m(r(x))=m(x^2-4)=x^2-4+3=x^2-1\\).","38":"En \\(x=8\\), la gráfica está en el tramo horizontal correspondiente a \\(5^\\circ\\text{C}\\).","39":"Se localiza el tiempo solicitado en la gráfica y se lee la temperatura correspondiente; la respuesta es B.","40":"\\(I(x)=px\\) y \\(6=2p\\). Entonces, \\(\\displaystyle p=\\frac62=3\\) dólares.","41":"El máximo de una parábola que abre hacia abajo está en el vértice. Como el vértice es \\((1,9)\\), se alcanza cuando \\(x=1\\).","42":"En el eje \\(y\\), \\(x=0\\). Sustituyendo: \\(\\displaystyle y=3(0)+6=6\\).","43":"La abscisa del vértice es \\(\\displaystyle x=-\\frac{b}{2a}=\\frac{18}{6}=3\\).","44":"\\(\\displaystyle 165{,}25=2{,}47x+54{,}1\\Rightarrow x=\\frac{165{,}25-54{,}1}{2{,}47}=45\\,\\text{cm}\\).","45":"Al resolver el sistema \\(\\begin{cases}5c+7t=250\\\\2c+3t=105\\end{cases}\\), se obtiene \\(c=15\\).","46":"Al resolver el sistema \\(\\begin{cases}300m+60v=18000\\\\200m+120v=24000\\end{cases}\\), se obtiene \\(m=30\\) colones por mensaje.","47":"En \\(]-3,0[\\), la gráfica es estrictamente monótona, por lo que es uno a uno y posee inversa.","48":"\\(f(x)=-x^2+1\\) es uno a uno al restringirse a un solo lado del vértice; \\(]0,+\\infty[\\) cumple esa condición.","49":"\\(\\displaystyle y=\\frac{x}{2}-4\\). Intercambiando \\(x\\) e \\(y\\): \\(\\displaystyle x=\\frac{y}{2}-4\\Rightarrow y=2x+8\\).","50":"Trasladar \\(2\\) unidades hacia arriba equivale a sumar \\(2\\): \\(\\displaystyle g(x)=\\sqrt{x}+2\\).","51":"La inversa se obtiene reflejando respecto de \\(y=x\\): \\((0,-2)\\mapsto(-2,0)\\) y \\((4,0)\\mapsto(0,4)\\). Corresponde a A.","52":"\\(\\displaystyle 8=b^3\\Rightarrow b=2\\). Entonces, \\(\\displaystyle p(6)=2^6=64\\).","53":"\\(\\displaystyle 5=\\sqrt{x}\\Rightarrow x=25\\,\\text{m}\\).","54":"\\(\\displaystyle r(8)=\\log_2(8)=3\\), porque \\(2^3=8\\).","55":"La función inversa de \\(y=\\log_3(x)\\) es \\(\\displaystyle y=3^x\\).","56":"\\(\\displaystyle 4^{x+1}=8^x\\Rightarrow 2^{2x+2}=2^{3x}\\Rightarrow 2x+2=3x\\Rightarrow x=2\\).","57":"Con población inicial \\(100\\) y duplicación en cada unidad de tiempo: \\(\\displaystyle p(t)=100\\cdot2^t\\).","58":"Costo variable más costo fijo: \\(\\displaystyle C(x)=250x+1500\\).","59":"Si el ancho es \\(x\\) y el largo \\(2x\\), entonces \\(\\displaystyle A=x(2x)=2x^2\\).","60":"El modelo logarítmico indicado corresponde a \\(\\displaystyle A(t)=\\log(t)\\)."};
+let current=0,answers=Array(TOTAL).fill(null),started=false,remaining=LIMIT,interval=null,reviewing=false,finished=false,timedOut=false;const $=id=>document.getElementById(id);
+function save(){localStorage.setItem('bxm022026_text_exam',JSON.stringify({answers,current,started,remaining,finished,timedOut,ts:Date.now()}));}
+function load(){try{const x=JSON.parse(localStorage.getItem('bxm022026_text_exam')||'null');if(!x)return;answers=x.answers||answers;current=x.current||0;started=!!x.started;finished=!!x.finished;timedOut=!!x.timedOut;remaining=typeof x.remaining==='number'?x.remaining:LIMIT;if(started&&!finished&&x.ts)remaining=Math.max(0,remaining-Math.floor((Date.now()-x.ts)/1000));}catch(e){}}
+function fmt(s){s=Math.max(0,s);let h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60;return[h,m,ss].map(v=>String(v).padStart(2,'0')).join(':')}
+function updateTimer(){$('timerTop').textContent=fmt(remaining);if(remaining<=0&&!finished){remaining=0;timedOut=true;clearInterval(interval);finish(true)}}
+function tick(){clearInterval(interval);if(finished)return;interval=setInterval(()=>{if(finished){clearInterval(interval);return}remaining=Math.max(0,remaining-1);updateTimer();save()},1000)}
+function start(){if(finished)return;started=true;$('startView').style.display='none';$('examView').style.display='block';render();updateTimer();if(!finished)tick();save()}
+function render(){const q=QUESTIONS[current];$('qnum').textContent=`Ítem ${q.n} de ${TOTAL}`;$('qstatus').textContent=answers[current]?`Respuesta: ${answers[current]}`:'Sin responder';$('qcontext').innerHTML=q.context||'';$('qcontext').classList.toggle('formulas-item11',q.n===11);$('qcontext').style.display=q.context?'block':'none';const fig=FIGURES[q.n],fb=$('qfigure'),fi=$('qfigureimg');
+const figureBeforeStem=[3, 7, 8, 9, 15, 17, 18, 21, 24, 25, 31, 32, 33, 34, 35, 38, 39, 41, 47, 48, 51].includes(q.n);
+const afterFig=AFTER_FIGURES[q.n];
+const afb=$('qaftergraphic'), afi=$('qaftergraphicimg');
+
+if(figureBeforeStem){
+  $('qtext').innerHTML='';
+}else{
+  $('qtext').innerHTML=q.stem;
+}
+if(fig){
+  fi.src=fig;
+  fb.style.display='block';
+}else{
+  fi.removeAttribute('src');
+  fb.style.display='none';
+}
+let afterText=document.getElementById('qafterfigure');
+if(!afterText){
+  afterText=document.createElement('div');
+  afterText.id='qafterfigure';
+  afterText.className='qtext';
+  fb.insertAdjacentElement('afterend',afterText);
+}
+if(figureBeforeStem){
+  afterText.innerHTML=q.stem;
+  afterText.style.display='block';
+}else{
+  afterText.innerHTML='';
+  afterText.style.display='none';
+}
+if(afterFig){
+  afi.src=afterFig;
+  afb.style.display='block';
+}else{
+  afi.removeAttribute('src');
+  afb.style.display='none';
+}
+const c=$('choices');c.innerHTML='';q.opts.forEach((txt,i)=>{const L='ABCD'[i],b=document.createElement('button');b.className='choice'+(answers[current]===L?' selected':'');b.innerHTML=`<span class="optletter">${L})</span>${txt}`;b.disabled=finished;b.onclick=()=>{if(finished)return;answers[current]=L;save();render()};c.appendChild(b)});$('prevBtn').disabled=current===0;$('nextBtn').textContent=current===TOTAL-1?'Ir a finalizar':'Siguiente →';renderGrid();if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear&&MathJax.typesetClear([$('qcontext'),$('qtext'),$('choices')]);MathJax.typesetPromise([$('qcontext'),$('qtext'),$('choices')]);}}
+function renderGrid(){const g=$('grid');g.innerHTML='';let count=answers.filter(Boolean).length;QUESTIONS.forEach((q,i)=>{const b=document.createElement('button');b.className='qjump '+(answers[i]?'answered':'unanswered')+(i===current?' current':'');b.textContent=q.n;b.onclick=()=>{current=i;render();save()};g.appendChild(b)});$('countTop').textContent=`${count}/${TOTAL}`;$('countSide').textContent=`${count} de ${TOTAL} respondidos`}
+function finish(auto=false){if(finished)return;if(!auto){const blank=answers.filter(x=>!x).length;if(!confirm(blank?`Aún tienes ${blank} ítem(es) sin responder. ¿Deseas finalizar de todas formas?`:'¿Deseas finalizar el examen?'))return}clearInterval(interval);if(auto)timedOut=true;remaining=Math.max(0,remaining);started=false;finished=true;save();$('examView').style.display='none';$('startView').style.display='none';$('resultView').style.display='block';let cor=0;answers.forEach((a,i)=>{if(a===QUESTIONS[i].answer)cor++});let blank=answers.filter(x=>!x).length,wrong=TOTAL-cor-blank;$('scoreText').textContent=`${cor}/${TOTAL}`;$('percentText').textContent=`${(cor/TOTAL*100).toFixed(1)}% de respuestas correctas${timedOut?' · Tiempo agotado':''}`;$('correctStat').textContent=cor;$('wrongStat').textContent=wrong;$('blankStat').textContent=blank;window.scrollTo({top:0,behavior:'smooth'})}
+function review(){
+reviewing=!reviewing;
+const box=$('review');
+box.style.display=reviewing?'grid':'none';
+$('reviewBtn').textContent=reviewing?'Ocultar revisión':'Revisar respuestas';
+if(!reviewing)return;
+box.innerHTML='';
+QUESTIONS.forEach((q,i)=>{
+ const r=document.createElement('div');
+ r.className='review-row';
+ const ok=answers[i]===q.answer;
+ const sol=SOLUTIONS[String(q.n)]||'';
+ r.innerHTML=`<div><b>Ítem ${q.n}</b></div><div>Tu respuesta: <span class="${ok?'good':'bad'}">${answers[i]||'—'}</span></div><div>Correcta: <span class="good">${q.answer}</span></div><div class="review-solution"><b>Solución:</b>${sol}</div>`;
+ r.onclick=()=>{current=i;$('resultView').style.display='none';$('examView').style.display='block';render()};
+ box.appendChild(r);
+});
+if(window.MathJax && MathJax.typesetPromise){
+  MathJax.typesetPromise([box]).catch(()=>{});
+}
+}
+function restart(){if(!confirm('¿Deseas borrar tus respuestas y comenzar de nuevo?'))return;localStorage.removeItem('bxm022026_text_exam');answers=Array(TOTAL).fill(null);current=0;remaining=LIMIT;started=false;finished=false;timedOut=false;reviewing=false;$('resultView').style.display='none';$('startView').style.display='block';$('countTop').textContent='0/60';updateTimer()}
+$('startBtn').onclick=start;$('finishBtn').onclick=()=>finish(false);$('reviewBtn').onclick=review;$('restartBtn').onclick=restart;$('prevBtn').onclick=()=>{if(current>0){current--;render();save()}};$('nextBtn').onclick=()=>{if(current<TOTAL-1){current++;render();save()}else $('finishBtn').scrollIntoView({behavior:'smooth'})};load();updateTimer();if(finished){$('startView').style.display='none';$('examView').style.display='none';$('resultView').style.display='block';let cor=0;answers.forEach((a,i)=>{if(a===QUESTIONS[i].answer)cor++});let blank=answers.filter(x=>!x).length,wrong=TOTAL-cor-blank;$('scoreText').textContent=`${cor}/${TOTAL}`;$('percentText').textContent=`${(cor/TOTAL*100).toFixed(1)}% de respuestas correctas${timedOut?' · Tiempo agotado':''}`;$('correctStat').textContent=cor;$('wrongStat').textContent=wrong;$('blankStat').textContent=blank}else if(started)start();
+</script></body></html>

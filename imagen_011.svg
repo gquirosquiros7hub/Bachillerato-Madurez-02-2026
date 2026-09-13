@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="500" viewBox="0 0 920 500">
+<rect width="920" height="500" fill="white"/>
+<defs>
+  <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1.1" fill="black"/>
+  </pattern>
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+.line{stroke:#000;stroke-width:3;fill:none;stroke-linecap:square}
+.tick{stroke:#000;stroke-width:2.5}
+.box{stroke:#000;stroke-width:3}
+</style>
+
+<!-- Línea de referencia superior del Grupo 1 -->
+<line class="line" x1="256.9" y1="78" x2="785.0" y2="78"/>
+<line class="tick" x1="256.9" y1="66" x2="256.9" y2="90"/><line class="tick" x1="325.7" y1="66" x2="325.7" y2="90"/><line class="tick" x1="509.4" y1="66" x2="509.4" y2="90"/><line class="tick" x1="693.1" y1="66" x2="693.1" y2="90"/><line class="tick" x1="785.0" y1="66" x2="785.0" y2="90"/>
+
+<!-- Números superiores -->
+<g font-size="24" text-anchor="middle">
+  <text x="256.9" y="42">19</text>
+  <text x="325.7" y="42">22</text>
+  <text x="509.4" y="42">30</text>
+  <text x="693.1" y="42">38</text>
+  <text x="785.0" y="42">42</text>
+</g>
+<g font-size="21" text-anchor="middle">
+  <text x="256.9" y="112">Mín</text>
+  <text x="325.7" y="112">Q₁</text>
+  <text x="509.4" y="112">Me</text>
+  <text x="693.1" y="112">Q₃</text>
+  <text x="785.0" y="112">Máx</text>
+</g>
+
+<!-- Grupo 1 -->
+<text x="24" y="205" font-size="27">Grupo 1</text>
+<line class="line" x1="256.9" y1="195" x2="785.0" y2="195"/>
+<line class="tick" x1="256.9" y1="175" x2="256.9" y2="215"/>
+<line class="tick" x1="785.0" y1="175" x2="785.0" y2="215"/>
+<rect class="box" x="325.7" y="160" width="367.4" height="70" fill="white"/>
+<rect x="325.7" y="160" width="183.7" height="70" fill="#777"/>
+<rect x="509.4" y="160" width="183.7" height="70" fill="url(#dots)"/>
+<line class="line" x1="509.4" y1="160" x2="509.4" y2="230"/>
+
+<!-- Grupo 2 -->
+<text x="24" y="335" font-size="27">Grupo 2</text>
+<line class="line" x1="165.0" y1="325" x2="739.1" y2="325"/>
+<line class="tick" x1="165.0" y1="305" x2="165.0" y2="345"/>
+<line class="tick" x1="739.1" y1="305" x2="739.1" y2="345"/>
+<rect class="box" x="256.9" y="290" width="436.3" height="70" fill="white"/>
+<rect x="256.9" y="290" width="252.6" height="70" fill="#777"/>
+<rect x="509.4" y="290" width="183.7" height="70" fill="url(#dots)"/>
+<line class="line" x1="509.4" y1="290" x2="509.4" y2="360"/>
+
+<!-- Línea de referencia inferior del Grupo 2 -->
+<line class="line" x1="165.0" y1="410" x2="739.1" y2="410"/>
+<line class="tick" x1="165.0" y1="398" x2="165.0" y2="422"/><line class="tick" x1="256.9" y1="398" x2="256.9" y2="422"/><line class="tick" x1="509.4" y1="398" x2="509.4" y2="422"/><line class="tick" x1="693.1" y1="398" x2="693.1" y2="422"/><line class="tick" x1="739.1" y1="398" x2="739.1" y2="422"/>
+<g font-size="21" text-anchor="middle">
+  <text x="165.0" y="392">Mín</text>
+  <text x="256.9" y="392">Q₁</text>
+  <text x="509.4" y="392">Me</text>
+  <text x="693.1" y="392">Q₃</text>
+  <text x="739.1" y="392">Máx</text>
+</g>
+<g font-size="24" text-anchor="middle">
+  <text x="165.0" y="455">15</text>
+  <text x="256.9" y="455">19</text>
+  <text x="509.4" y="455">30</text>
+  <text x="693.1" y="455">38</text>
+  <text x="739.1" y="455">40</text>
+</g>
+</svg>

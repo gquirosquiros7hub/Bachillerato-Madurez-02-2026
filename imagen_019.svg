@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="430" viewBox="0 0 560 430">
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+  </marker>
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+.grid{stroke:#555;stroke-width:1.05;stroke-dasharray:5 4}
+.axis{stroke:#000;stroke-width:2}
+.shape{stroke:#000;stroke-width:2.25;fill:none}
+.pt{fill:#000}
+</style>
+
+<!-- origen gráfico: (250,315), escala 38 -->
+<!-- cuadrícula x=-3..6; y=-2..6 -->
+<g class="grid">
+  <!-- verticales -->
+  <line x1="136" y1="87" x2="136" y2="391"/>
+  <line x1="174" y1="87" x2="174" y2="391"/>
+  <line x1="212" y1="87" x2="212" y2="391"/>
+  <line x1="288" y1="87" x2="288" y2="315"/>
+  <line x1="326" y1="87" x2="326" y2="315"/>
+  <line x1="364" y1="87" x2="364" y2="315"/>
+  <line x1="402" y1="87" x2="402" y2="315"/>
+  <line x1="440" y1="87" x2="440" y2="315"/>
+  <line x1="478" y1="87" x2="478" y2="315"/>
+  <!-- horizontales -->
+  <line x1="136" y1="87" x2="478" y2="87"/>
+  <line x1="136" y1="125" x2="478" y2="125"/>
+  <line x1="136" y1="163" x2="478" y2="163"/>
+  <line x1="136" y1="201" x2="478" y2="201"/>
+  <line x1="136" y1="239" x2="478" y2="239"/>
+  <line x1="136" y1="277" x2="478" y2="277"/>
+  <line x1="136" y1="353" x2="250" y2="353"/>
+  <line x1="136" y1="391" x2="250" y2="391"/>
+</g>
+
+<!-- ejes -->
+<line class="axis" x1="85" y1="315" x2="518" y2="315" marker-end="url(#arr)"/>
+<line class="axis" x1="250" y1="410" x2="250" y2="45" marker-end="url(#arr)"/>
+
+<!-- triángulo W -->
+<polyline class="shape" points="136,87 136,125 212,125 136,87"/>
+<!-- triángulo P -->
+<polyline class="shape" points="136,353 136,391 212,353 136,353"/>
+<!-- triángulo Q -->
+<polyline class="shape" points="326,239 478,239 478,163 326,239"/>
+
+<!-- puntos -->
+<g class="pt">
+  <circle cx="136" cy="87" r="4.6"/>
+  <circle cx="136" cy="125" r="4.6"/>
+  <circle cx="212" cy="125" r="4.6"/>
+
+  <circle cx="136" cy="353" r="4.6"/>
+  <circle cx="136" cy="391" r="4.6"/>
+  <circle cx="212" cy="353" r="4.6"/>
+
+  <circle cx="326" cy="239" r="4.6"/>
+  <circle cx="478" cy="239" r="4.6"/>
+  <circle cx="478" cy="163" r="4.6"/>
+</g>
+
+<!-- letras, en las posiciones del PDF -->
+<text x="145" y="119" font-size="18">W</text>
+<text x="145" y="374" font-size="18">P</text>
+<text x="422" y="226" font-size="18">Q</text>
+
+<!-- números del eje x -->
+<g font-size="16">
+  <!-- negativos sobre el eje -->
+  <text x="132" y="306" text-anchor="end">−3</text>
+  <text x="170" y="306" text-anchor="end">−2</text>
+  <text x="208" y="306" text-anchor="end">−1</text>
+  <!-- positivos bajo el eje -->
+  <text x="288" y="338" text-anchor="middle">1</text>
+  <text x="326" y="338" text-anchor="middle">2</text>
+  <text x="364" y="338" text-anchor="middle">3</text>
+  <text x="402" y="338" text-anchor="middle">4</text>
+  <text x="440" y="338" text-anchor="middle">5</text>
+  <text x="478" y="338" text-anchor="middle">6</text>
+
+  <!-- positivos del eje y, a la izquierda -->
+  <text x="241" y="271" text-anchor="end">1</text>
+  <text x="241" y="233" text-anchor="end">2</text>
+  <text x="241" y="195" text-anchor="end">3</text>
+  <text x="241" y="157" text-anchor="end">4</text>
+  <text x="241" y="119" text-anchor="end">5</text>
+  <text x="241" y="81" text-anchor="end">6</text>
+
+  <!-- negativos del eje y, a la derecha -->
+  <text x="259" y="358">−1</text>
+  <text x="259" y="396">−2</text>
+</g>
+
+<!-- letras de ejes -->
+<text x="524" y="320" font-size="19">x</text>
+<text x="250" y="35" font-size="19" text-anchor="middle">y</text>
+</svg>

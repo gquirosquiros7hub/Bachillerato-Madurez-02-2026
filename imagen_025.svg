@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="270" viewBox="0 0 520 270">
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+  <marker id="axis51" markerWidth="8" markerHeight="8" refX="6.2" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+  </marker>
+  <marker id="line51" markerWidth="8" markerHeight="8" refX="6.2" refY="4" orient="auto-start-reverse">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+  </marker>
+</defs>
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+ .axis{stroke:#000;stroke-width:2.2;fill:none}
+ .fn{stroke:#000;stroke-width:2.6;fill:none}
+ .pt{fill:#000}
+</style>
+
+<line class="axis" x1="78" y1="145" x2="425" y2="145" marker-end="url(#axis51)"/>
+<line class="axis" x1="165" y1="226" x2="165" y2="45" marker-end="url(#axis51)"/>
+<text x="438" y="151" font-size="21">x</text>
+<text x="165" y="31" text-anchor="middle" font-size="21">y</text>
+
+<line class="fn" x1="82" y1="208.16" x2="400" y2="104.09"
+      marker-start="url(#line51)" marker-end="url(#line51)"/>
+
+<circle class="pt" cx="165" cy="181" r="5"/>
+<circle class="pt" cx="275" cy="145" r="5"/>
+
+<!-- −2 más cercano al punto, sin tocar la recta -->
+<text x="153" y="171" text-anchor="end" font-size="20">−2</text>
+
+<text x="275" y="132" text-anchor="middle" font-size="20">4</text>
+<text x="361" y="104" font-size="20">f</text>
+</svg>

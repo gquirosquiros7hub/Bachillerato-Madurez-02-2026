@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350">
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+  <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+  </marker>
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+.axis{stroke:#000;stroke-width:2.1}
+.curve{stroke:#000;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.guide{stroke:#000;stroke-width:1.7;stroke-dasharray:7 6}
+</style>
+
+<!-- Eje horizontal -->
+<line class="axis" x1="35" y1="270" x2="686" y2="270" marker-end="url(#arrow3)"/>
+
+<!-- Curva asimétrica -->
+<path class="curve"
+      d="M112 270
+         C126 214, 147 120, 190 61
+         C208 37, 228 27, 245 27
+         C268 27, 285 48, 302 83
+         C326 132, 347 183, 384 220
+         C425 259, 481 268, 573 270"/>
+
+<!-- 2,7: pasa por el máximo -->
+<line class="guide" x1="245" y1="27" x2="245" y2="270"/>
+
+<!-- 2,9: empieza exactamente donde intersecta la curva -->
+<line class="guide" x1="292" y1="64" x2="292" y2="270"/>
+
+<!-- Valores centrados bajo las líneas -->
+<text x="245" y="307" font-size="23" text-anchor="middle">2,7</text>
+<text x="292" y="307" font-size="23" text-anchor="middle">2,9</text>
+</svg>

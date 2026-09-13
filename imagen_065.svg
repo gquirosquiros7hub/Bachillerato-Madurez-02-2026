@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="260" viewBox="0 0 390 260">
+<defs>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+</marker>
+</defs>
+<rect width="100%" height="100%" fill="#fff"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+.axis{stroke:#000;stroke-width:2.2;fill:none}
+.shape{stroke:#000;stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.dash{stroke:#000;stroke-width:1.5;stroke-dasharray:6 5;fill:none}
+.pt{fill:#000}
+</style>
+<line class="axis" x1="105" y1="178" x2="350" y2="178" marker-end="url(#arr)"/>
+<line class="axis" x1="195" y1="230" x2="195" y2="34" marker-end="url(#arr)"/>
+<text x="195" y="22" font-size="20" text-anchor="middle">y</text>
+<text x="358" y="184" font-size="20">x</text>
+
+<line class="dash" x1="155" y1="82" x2="155" y2="178"/>
+<line class="dash" x1="155" y1="82" x2="195" y2="82"/>
+
+<line class="shape" x1="155" y1="82" x2="285" y2="178"/>
+<line class="shape" x1="155" y1="130" x2="285" y2="178"/>
+
+<circle class="pt" cx="155" cy="82" r="6"/>
+<circle class="pt" cx="155" cy="130" r="6"/>
+<circle class="pt" cx="285" cy="178" r="6"/>
+
+<text x="202" y="88" font-size="19">2</text>
+<text x="151" y="203" font-size="18" text-anchor="end">−1</text>
+<text x="285" y="204" font-size="18" text-anchor="middle">2</text>
+</svg>

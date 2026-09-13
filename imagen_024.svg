@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="390" viewBox="0 0 560 390">
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+ <marker id="axis48" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+  <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+ </marker>
+ <marker id="down48" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+  <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+ </marker>
+</defs>
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+ .axis{stroke:#000;stroke-width:2.1;fill:none}
+ .curve{stroke:#000;stroke-width:2.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+ .pt{fill:#000}
+</style>
+
+<!-- ejes -->
+<line class="axis" x1="90" y1="235" x2="470" y2="235" marker-end="url(#axis48)"/>
+<line class="axis" x1="280" y1="335" x2="280" y2="65" marker-end="url(#axis48)"/>
+<text x="480" y="235" font-size="20" dominant-baseline="middle">x</text>
+<text x="280" y="50" font-size="20" text-anchor="middle">y</text>
+
+<!-- parábola exacta y = 1-x² -->
+<polyline class="curve" points="160.00,352.00 163.75,340.19 167.50,328.75 171.25,317.69 175.00,307.00 178.75,296.69 182.50,286.75 186.25,277.19 190.00,268.00 193.75,259.19 197.50,250.75 201.25,242.69 205.00,235.00 208.75,227.69 212.50,220.75 216.25,214.19 220.00,208.00 223.75,202.19 227.50,196.75 231.25,191.69 235.00,187.00 238.75,182.69 242.50,178.75 246.25,175.19 250.00,172.00 253.75,169.19 257.50,166.75 261.25,164.69 265.00,163.00 268.75,161.69 272.50,160.75 276.25,160.19 280.00,160.00 283.75,160.19 287.50,160.75 291.25,161.69 295.00,163.00 298.75,164.69 302.50,166.75 306.25,169.19 310.00,172.00 313.75,175.19 317.50,178.75 321.25,182.69 325.00,187.00 328.75,191.69 332.50,196.75 336.25,202.19 340.00,208.00 343.75,214.19 347.50,220.75 351.25,227.69 355.00,235.00 358.75,242.69 362.50,250.75 366.25,259.19 370.00,268.00 373.75,277.19 377.50,286.75 381.25,296.69 385.00,307.00 388.75,317.69 392.50,328.75 396.25,340.19 400.00,352.00"/>
+
+<!-- flechas de continuación -->
+<line class="curve" x1="160" y1="352" x2="155" y2="374" marker-end="url(#down48)"/>
+<line class="curve" x1="400" y1="352" x2="405" y2="374" marker-end="url(#down48)"/>
+
+<!-- puntos exactamente sobre la curva -->
+<circle class="pt" cx="205" cy="235" r="4.8"/>
+<circle class="pt" cx="280" cy="160" r="4.8"/>
+<circle class="pt" cx="355" cy="235" r="4.8"/>
+
+<!-- etiquetas -->
+<text x="198" y="220" font-size="18" text-anchor="end">−1</text>
+<text x="361" y="220" font-size="18">1</text>
+<text x="270" y="154" font-size="18" text-anchor="end">1</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="505" height="370" viewBox="0 0 505 370">
+<rect width="505" height="370" fill="white"/>
+
+<defs>
+  <marker id="arr" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+    <path d="M0,0 L7,3.5 L0,7 Z" fill="#000"/>
+  </marker>
+</defs>
+
+<!-- Ejes -->
+<line x1="62" y1="355" x2="62" y2="40" stroke="#000" stroke-width="2.4" marker-end="url(#arr)"/>
+<line x1="0" y1="320" x2="392" y2="320" stroke="#000" stroke-width="2.4" marker-end="url(#arr)"/>
+
+<!-- Circunferencia -->
+<circle cx="230" cy="180" r="90" fill="none" stroke="#000" stroke-width="3"/>
+
+<!-- Líneas de referencia -->
+<line x1="72" y1="90" x2="230" y2="90" stroke="#000" stroke-width="1.8" stroke-dasharray="7 5"/>
+<line x1="72" y1="270" x2="230" y2="270" stroke="#000" stroke-width="1.8" stroke-dasharray="7 5"/>
+<line x1="230" y1="90" x2="230" y2="320" stroke="#000" stroke-width="1.8" stroke-dasharray="7 5"/>
+
+<!-- Puntos -->
+<circle cx="230" cy="90" r="6.2" fill="#000"/>
+<circle cx="230" cy="270" r="6.2" fill="#000"/>
+
+<!-- Textos -->
+<g font-family="Arial, Helvetica, sans-serif" fill="#000">
+  <text x="56" y="28" font-size="22" font-weight="600">y (norte)</text>
+  <text x="400" y="329" font-size="22" font-weight="600">x (este)</text>
+
+  <text x="17" y="99" font-size="22">120</text>
+  <text x="27" y="278" font-size="22">30</text>
+  <text x="218" y="354" font-size="22">90</text>
+</g>
+</svg>

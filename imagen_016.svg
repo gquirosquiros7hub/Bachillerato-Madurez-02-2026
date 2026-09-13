@@ -1,0 +1,56 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="340" viewBox="0 0 560 340">
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#000"/>
+  </marker>
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000}
+.axis{stroke:#000;stroke-width:2.2;fill:none}
+.shape{stroke:#000;stroke-width:2.7;fill:none}
+.dash{stroke:#000;stroke-width:1.3;stroke-dasharray:6 5;fill:none}
+.pt{fill:#000}
+</style>
+
+<!-- Ejes -->
+<line class="axis" x1="55" y1="285" x2="520" y2="285" marker-end="url(#arr)"/>
+<line class="axis" x1="75" y1="305" x2="75" y2="35" marker-end="url(#arr)"/>
+
+<!-- Guías punteadas EXACTAS del PDF -->
+<!-- y = 7, desde el eje y hasta x = 5 -->
+<line class="dash" x1="75" y1="75" x2="300" y2="75"/>
+<!-- y = 3, desde el eje y hasta x = 9 -->
+<line class="dash" x1="75" y1="195" x2="465" y2="195"/>
+<!-- x = 5, desde el eje x hasta y = 7 -->
+<line class="dash" x1="300" y1="75" x2="300" y2="285"/>
+
+<!-- Entrada del túnel -->
+<line class="shape" x1="135" y1="285" x2="135" y2="195"/>
+<path class="shape" d="M135 195 C185 120 245 75 300 75 C355 75 415 120 465 195"/>
+<line class="shape" x1="465" y1="195" x2="465" y2="285"/>
+
+<!-- Puntos -->
+<circle class="pt" cx="135" cy="285" r="4.8"/>
+<circle class="pt" cx="135" cy="195" r="4.8"/>
+<circle class="pt" cx="300" cy="75" r="4.8"/>
+<circle class="pt" cx="465" cy="195" r="4.8"/>
+<circle class="pt" cx="465" cy="285" r="4.8"/>
+
+<!-- Etiquetas -->
+<g font-size="18" text-anchor="middle">
+  <text x="135" y="309">1</text>
+  <text x="300" y="309">5</text>
+  <text x="465" y="309">9</text>
+</g>
+<g font-size="18" text-anchor="end">
+  <text x="64" y="201">3</text>
+  <text x="64" y="81">7</text>
+</g>
+
+<!-- x / y con el mismo criterio visual de la pregunta 17 -->
+<text x="70" y="301" font-size="18" text-anchor="end">0</text>
+<text x="526" y="285" font-size="20" font-family="Arial, Helvetica, sans-serif" dominant-baseline="middle">x</text>
+<text x="75" y="20" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">y</text>
+</svg>
